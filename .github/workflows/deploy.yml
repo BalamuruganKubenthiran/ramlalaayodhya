@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - master   # Runs when code is pushed to main
-
+  schedule:
+    - cron: " * * * * * "
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
