@@ -23,11 +23,11 @@ jobs:
 
       # 3. Build Docker image
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/myram:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/taskjava:latest .
 
       # 4. Push Docker image
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/myram:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/taskjava:latest
 
       # 5. Deploy (example via SSH to a server)
       - name: Deploy on Server
@@ -38,6 +38,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/myram:latest
-            docker stop myram || true
-            docker rm myram || true
-            docker run -d --name myram -p 8787:80 ${{ secrets.DOCKER_USERNAME }}/myram:latest
+            docker stop taskjava || true
+            docker rm taskjava || true
+            docker run -d --name taskjava -p 8787:80 ${{ secrets.DOCKER_USERNAME }}/myram:latest
